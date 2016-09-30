@@ -10,6 +10,22 @@
 #define RAISE LT(_UP, KC_SPC)
 #define LOWER LT(_DN, KC_SPC)
 
+#undef LEADER_TIMEOUT
+#define LEADER_TIMEOUT 500
+
+#define SEQ_ONE_KEY_MOD(kc, key, mod) \
+    SEQ_ONE_KEY(kc) { \
+        register_code(mod); \
+        register_code(key); \
+        unregister_code(key); \
+        unregister_code(mod); \
+    }
+
+#define SEQ_ONE_KEY_CTRL(kc, key) SEQ_ONE_KEY_MOD(kc, key, KC_LCTRL)
+#define SEQ_ONE_KEY_GUI(kc, key) SEQ_ONE_KEY_MOD(kc, key, KC_LGUI)
+
+LEADER_EXTERNS();
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* base layer */
@@ -17,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
             KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_ENT, \
             KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,             KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, \
-            MO(_FN), KC_LALT, KC_LGUI,          RAISE,            LOWER,                     KC_ESC,  KC_RGUI, MO(_FN) \
+            MO(_FN), KC_LALT, KC_LGUI,          RAISE,            LOWER,                     KC_LEAD, KC_ESC,  MO(_FN) \
     ),
 
     /* up */
@@ -60,7 +76,26 @@ void matrix_init_user(void) {
 }
 
 void matrix_scan_user(void) {
+    LEADER_DICTIONARY() {
+        leading = false;
+        leader_end();
 
+        SEQ_ONE_KEY_CTRL(KC_A, KC_1)
+        SEQ_ONE_KEY_CTRL(KC_S, KC_2)
+        SEQ_ONE_KEY_CTRL(KC_D, KC_3)
+        SEQ_ONE_KEY_CTRL(KC_F, KC_4)
+
+        SEQ_ONE_KEY_GUI(KC_Q, KC_1)
+        SEQ_ONE_KEY_GUI(KC_W, KC_2)
+        SEQ_ONE_KEY_GUI(KC_E, KC_3)
+        SEQ_ONE_KEY_GUI(KC_R, KC_4)
+        SEQ_ONE_KEY_GUI(KC_T, KC_5)
+        SEQ_ONE_KEY_GUI(KC_Y, KC_6)
+        SEQ_ONE_KEY_GUI(KC_U, KC_7)
+        SEQ_ONE_KEY_GUI(KC_I, KC_8)
+        SEQ_ONE_KEY_GUI(KC_O, KC_9)
+        SEQ_ONE_KEY_GUI(KC_P, KC_0)
+    }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
