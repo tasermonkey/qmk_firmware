@@ -8,6 +8,7 @@ extern keymap_config_t keymap_config;
 #define _UP 1
 #define _DN 2
 #define _FN 3
+#define _LK 4
 
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
@@ -30,25 +31,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC },
     { KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT },
     { KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ESC },
-    { MO(_FN), KC_LALT, KC_LGUI, RAISE,   XXXXXXX, XXXXXXX, XXXXXXX, LOWER,   KC_RGUI, KC_RALT, XXXXXXX, MO(_FN) }
+    { MO(_FN), KC_LALT, KC_LGUI, RAISE,   XXXXXXX, XXXXXXX, XXXXXXX, LOWER,   KC_RGUI, KC_RALT, XXXXXXX, TG(_LK) }
   },
   [_UP] = { /* Raised Layer */
     { KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS },
     { _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_QUOT, KC_EQL },
     { _______, _______, _______, _______, _______, _______, _______, _______, KC_LBRC, KC_RBRC, KC_BSLS, _______ },
-    { _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX, _______ },
+    { XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_SPC,  _______, _______, XXXXXXX, XXXXXXX },
   },
   [_DN] = { /* Lowered Layer */
     { KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS },
     { _______, _______, _______, _______, _______, _______, KC_A_LT, KC_A_DN, KC_A_UP, KC_A_RT, KC_DQUO, KC_PLUS },
     { _______, _______, _______, _______, _______, _______, _______, _______, KC_LCBR, KC_RCBR, KC_PIPE, _______ },
-    { _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX, _______ },
+    { XXXXXXX, _______, _______, KC_SPC,  XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX },
   },
   [_FN] = { /* Function Layer */
     { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ },
     { _______, _______, KC_PGUP, KC_HOME, KC_END,  KC_PGDN, KC_AS_LT,KC_AS_DN,KC_AS_UP,KC_AS_RT,_______, _______ },
     { _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, _______, _______, _______, _______, _______, _______ },
-    { _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX, _______ },
+    { _______, _______, _______, KC_SPC,  XXXXXXX, XXXXXXX, XXXXXXX, KC_SPC,  _______, _______, XXXXXXX, XXXXXXX },
+  },
+  [_LK] = { /* Lock Layer */
+    { _______, _______, _______, _______, _______, _______, _______, KC_7,    KC_8,    KC_9,    _______, _______ },
+    { _______, _______, _______, _______, _______, _______, _______, KC_4,    KC_5,    KC_6,    _______, _______ },
+    { _______, _______, _______, _______, _______, _______, _______, KC_1,    KC_2,    KC_3,    _______, _______ },
+    { XXXXXXX, _______, _______, KC_SPC,  XXXXXXX, XXXXXXX, XXXXXXX, KC_0,    _______, _______, XXXXXXX, _______ },
   }
 };
 
