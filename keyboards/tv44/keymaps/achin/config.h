@@ -3,6 +3,7 @@
 
 #include "../../config.h"
 
-// place overrides here
+#undef TAPPING_TERM
+#define TAPPING_TERM 350
 
 #endif
