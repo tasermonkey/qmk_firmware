@@ -16,6 +16,8 @@ extern keymap_config_t keymap_config;
 #define RAISE LT(_UP, KC_SPC)
 #define LOWER LT(_DN, KC_SPC)
 
+#define CTL_ESC CTL_T(KC_ESC)
+
 #define KC_A_UP LALT(KC_UP)
 #define KC_A_DN LALT(KC_DOWN)
 #define KC_A_LT LALT(KC_LEFT)
@@ -29,8 +31,8 @@ extern keymap_config_t keymap_config;
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BL] = { /* Base Layer */
     { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC },
-    { KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT },
-    { KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ESC },
+    { CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT },
+    { KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT },
     { MO(_FN), KC_LALT, KC_LGUI, RAISE,   XXXXXXX, XXXXXXX, XXXXXXX, LOWER,   KC_RGUI, KC_RALT, XXXXXXX, TG(_LK) }
   },
   [_UP] = { /* Raised Layer */
